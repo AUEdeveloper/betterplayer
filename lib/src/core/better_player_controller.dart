@@ -1036,7 +1036,8 @@ class BetterPlayerController {
   ///aspect ratio from BetterPlayerConfiguration will be used. Otherwise
   ///[_overriddenAspectRatio] will be used.
   double? getAspectRatio() {
-    return _overriddenAspectRatio ?? betterPlayerConfiguration.aspectRatio;
+    return videoPlayerController?.value.size?.aspectRatio ??
+        betterPlayerConfiguration.aspectRatio;
   }
 
   // ignore: use_setters_to_change_properties

@@ -78,12 +78,14 @@ class _BetterPlayerWithControlsState extends State<BetterPlayerWithControls> {
               .autoDetectFullscreenDeviceOrientation ||
           betterPlayerController
               .betterPlayerConfiguration.autoDetectFullscreenAspectRatio) {
-        aspectRatio =
-            betterPlayerController.videoPlayerController?.value.aspectRatio ??
-                1.0;
+        aspectRatio = betterPlayerController
+                .videoPlayerController?.value.size?.aspectRatio ??
+            1.0;
       } else {
         aspectRatio = betterPlayerController
                 .betterPlayerConfiguration.fullScreenAspectRatio ??
+            betterPlayerController
+                .videoPlayerController?.value.size?.aspectRatio ??
             BetterPlayerUtils.calculateAspectRatio(context);
       }
     } else {
@@ -299,17 +301,15 @@ class _BetterPlayerVideoFitWidgetState
   Widget build(BuildContext context) {
     if (_initialized && _started) {
       return Center(
-        child: ClipRect(
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            child: FittedBox(
-              fit: widget.boxFit,
-              child: SizedBox(
-                width: controller!.value.size?.width ?? 0,
-                height: controller!.value.size?.height ?? 0,
-                child: VideoPlayer(controller),
-              ),
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: FittedBox(
+            fit: widget.boxFit,
+            child: SizedBox(
+              width: controller!.value.size?.width ?? 0,
+              height: controller!.value.size?.height ?? 0,
+              child: VideoPlayer(controller),
             ),
           ),
         ),

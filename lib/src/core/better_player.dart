@@ -217,31 +217,32 @@ class _BetterPlayerState extends State<BetterPlayer>
       pageBuilder: _fullScreenRoutePageBuilder,
     );
 
-    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
-    if (_betterPlayerConfiguration.autoDetectFullscreenDeviceOrientation ==
-        true) {
-      final aspectRatio =
-          widget.controller.videoPlayerController?.value.aspectRatio ?? 1.0;
-      List<DeviceOrientation> deviceOrientations;
-      if (aspectRatio < 1.0) {
-        deviceOrientations = [
-          DeviceOrientation.portraitUp,
-          DeviceOrientation.portraitDown
-        ];
-      } else {
-        deviceOrientations = [
-          DeviceOrientation.landscapeLeft,
-          DeviceOrientation.landscapeRight
-        ];
-      }
-      await SystemChrome.setPreferredOrientations(deviceOrientations);
-    } else {
-      await SystemChrome.setPreferredOrientations(
-        widget.controller.betterPlayerConfiguration
-            .deviceOrientationsOnFullScreen,
-      );
-    }
+    // if (_betterPlayerConfiguration.autoDetectFullscreenDeviceOrientation ==
+    //     true) {
+    //   final aspectRatio =
+    //       widget.controller.videoPlayerController?.value.size?.aspectRatio ??
+    //           1.0;
+    //   List<DeviceOrientation> deviceOrientations;
+    //   if (aspectRatio < 1.0) {
+    //     deviceOrientations = [
+    //       DeviceOrientation.portraitUp,
+    //       DeviceOrientation.portraitDown
+    //     ];
+    //   } else {
+    //     deviceOrientations = [
+    //       DeviceOrientation.landscapeLeft,
+    //       DeviceOrientation.landscapeRight
+    //     ];
+    //   }
+    //   await SystemChrome.setPreferredOrientations(deviceOrientations);
+    // } else {
+    //   await SystemChrome.setPreferredOrientations(
+    //     widget.controller.betterPlayerConfiguration
+    //         .deviceOrientationsOnFullScreen,
+    //   );
+    // }
 
     if (!_betterPlayerConfiguration.allowedScreenSleep) {
       Wakelock.enable();
@@ -255,10 +256,10 @@ class _BetterPlayerState extends State<BetterPlayer>
     // so we do not need to check Wakelock.isEnabled.
     Wakelock.disable();
 
-    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: _betterPlayerConfiguration.systemOverlaysAfterFullScreen);
-    await SystemChrome.setPreferredOrientations(
-        _betterPlayerConfiguration.deviceOrientationsAfterFullScreen);
+    // await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    //     overlays: _betterPlayerConfiguration.systemOverlaysAfterFullScreen);
+    // await SystemChrome.setPreferredOrientations(
+    //     _betterPlayerConfiguration.deviceOrientationsAfterFullScreen);
   }
 
   Widget _buildPlayer() {
